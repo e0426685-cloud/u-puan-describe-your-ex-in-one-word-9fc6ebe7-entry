@@ -20,6 +20,12 @@ def validate(word):
         return False
     if any(ch.isspace() for ch in text):
         return False
+    # The judge rewards exactly one clean word: no control characters,
+    # no punctuation tricks, and nothing non-printable sneaking in.
+    if any(not ch.isprintable() or ch.isspace() for ch in text):
+        return False
+    if not text.isalpha():
+        return False
     return True
 
 
